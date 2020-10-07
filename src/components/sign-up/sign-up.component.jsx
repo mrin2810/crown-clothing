@@ -24,7 +24,7 @@ class SignUp extends React.Component{
 
         const { displayName, email, password, confirmPassword} = this.state;
 
-        if (password != confirmPassword){
+        if (password !== confirmPassword){
             alert("passwords don't match");
             return;
         }
@@ -34,10 +34,10 @@ class SignUp extends React.Component{
             await createUserProfileDocument(user, {displayName});
 
             this.setState({
-                displayName: '',
-                email: '',
-                password: '',
-                confirmPassword: ''
+                displayName: displayName,
+                email: email,
+                password: password,
+                confirmPassword: confirmPassword
             })
         }catch (error){
             console.error(error)
@@ -51,6 +51,7 @@ class SignUp extends React.Component{
     }
 
     render(){
+        const {displayName, email, password, confirmPassword} = this.state;
         return (
             <div className='sign-up'>
                 <h2 className="title">I do not have a account</h2>
@@ -60,7 +61,7 @@ class SignUp extends React.Component{
                         type='text'
                         name='displayName'
                         value={displayName}
-                        onChange={this.onChange}
+                        onChange={this.handleChange}
                         label='Display Name'
                         required
                     />
@@ -68,7 +69,7 @@ class SignUp extends React.Component{
                         type='email'
                         name='email'
                         value={email}
-                        onChange={this.onChange}
+                        onChange={this.handleChange}
                         label='Email'
                         required
                     />
@@ -76,7 +77,7 @@ class SignUp extends React.Component{
                         type='password'
                         name='password'
                         value={password}
-                        onChange={this.onChange}
+                        onChange={this.handleChange}
                         label='Password'
                         required
                     />
@@ -84,7 +85,7 @@ class SignUp extends React.Component{
                         type='password'
                         name='confirmPassword'
                         value={confirmPassword}
-                        onChange={this.onChange}
+                        onChange={this.handleChange}
                         label='Confirm Password'
                         required
                     />
